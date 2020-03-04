@@ -1,50 +1,22 @@
-### CafeMenu ```devrep```
-
->Builds: 
-[![Build Status](https://travis-ci.org/sergeblr/devrep.svg?branch=master)](https://travis-ci.org/sergeblr/devrep)
-[![Coverage Status](https://coveralls.io/repos/github/sergeblr/devrep/badge.svg?branch=master)](https://coveralls.io/github/sergeblr/devrep?branch=master)
-[![buddy pipeline](https://app.buddy.works/sergeblr/devrep/pipelines/pipeline/207563/badge.svg?token=b66c7e74848c94b4f57f172d0ac8a16b1d44347935104f2bfa878a3a9fb93df8 "buddy pipeline")](https://app.buddy.works/sergeblr/devrep/pipelines/pipeline/207563)
-
->Chckrs:
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bcbc4a4f91e24705a2aaccee6151cd58)](https://app.codacy.com/app/sergeblr/devrep?utm_source=github.com&utm_medium=referral&utm_content=sergeblr/devrep&utm_campaign=Badge_Grade_Dashboard)
-[![codebeat badge](https://codebeat.co/badges/751a85b1-78ad-477e-9a83-083fb97bfff2)](https://codebeat.co/projects/github-com-sergeblr-devrep-master)
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/sergeblr/devrep/blob/master/cafemenu/README.md)
-
+### Docker & docker-compose package & deploy automation  ```Microservices SpringBoot app example, Maven, MySQL, RabbitMQ ```
 
 ### Project description
- Cafemenu - application for cafe employees to control of making orders (adding/editing items), filter them by date&time, editing and summarize by items price inside & item quantity.
+ This is an example project, that shows how to automate maven-based multiservice project packaging & deployment.
 
 ### Prerequisites
-- jdk11
-- maven 3+
-- tomcat9
+- Docker v18.0, docker-compose v3.7
 
 ***
 **Installing**  
- - Preinstalling:
-   - <details>
-       <summary>install jdk11</summary>
-       
-       prepare: `sudo apt update`
-       
-       install: `sudo apt install openjdk-11-jre-headless`
-       
-       check: `java -version`
-     </details>
-   - <details>
-       <summary>install maven</summary>
-       
-       prepare: `sudo apt update`   
-       
-       install: `sudo apt install maven`
-       
-       check: `mvn -version`
-       </details>
+ - Docker installing main tutorial: `https://docs.docker.com/install/`
+ - Docker installing at Ubuntu: `https://docs.docker.com/install/linux/docker-ce/ubuntu/`
 
  - Download project from github
- URL: `https://github.com/brest-java-course-summer-2019/siarhei-ivaniukovich.git`
+ URL: `https://github.com/sergeblr/docker-compose-micro-demo.git`
  - Run at root of unpacked project /cafemenu folder to build project:
- `mvn clean install`
+ `docker-compose up --build`
+ Wait until necessary dependencies will be downloaded, project packaged and services will be started.
+ After docker-compose services 
  
 **Running app**
  - Using plugin jetty:
