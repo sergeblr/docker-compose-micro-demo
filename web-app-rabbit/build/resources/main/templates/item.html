@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="incl/header_ :: header (pagename='Item'+${item.itemId>0?': '+item.itemName:' new'})">header</div>
+
+<section id="item">
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="max-width: 850px;">
+                    <div class="card-body">
+                        <form id="itemForm"
+                              th:object="${item}"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                <p>Please fix errors below:</p>
+                            </div>
+                            <input id="field_itemId"
+                            type="hidden"
+                            th:field="*{itemId}"/>
+                            <div class="form-group">
+                                <label class="form-control-label" for="field_itemName">Item name:</label>
+                                <input class="form-control" pattern="[A-Za-z0-9]"
+                                       id="field_itemName"
+                                       type="text" value=""
+                                       th:class="${#fields.hasErrors('itemName')} ? 'form-control is-invalid' : 'form-control'"
+                                       th:field="*{itemName}"/>
+                                <div th:if="${#fields.hasErrors('itemName')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{itemName}">[errors]</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="field_itemprice">Item price:</label>
+                                <input id="field_itemprice" type="text"
+                                       class="currency form-control"
+                                       th:class="${#fields.hasErrors('itemPrice')} ? 'currency form-control is-invalid' : 'currency form-control'"
+                                       th:field="*{itemPrice}"/>
+                                <div th:if="${#fields.hasErrors('itemPrice')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{itemPrice}">[errors]</div>
+                            </div>
+                        </form>
+                        <div>
+                            <a href="items.html" class="btn btn-success"
+                               th:text="${isNew} ? 'Create new item' : 'Save edited item'"
+                               th:onclick="@{document.forms['itemForm'].submit(); return false;}">Create/Edit item</a>
+                            <a th:href="@{/items}" href="items.html" class="btn btn-danger">Cancel</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+
+<script src="../..js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../..js/jquery.inputmask.bundle.min.js"
+        th:src="@{/js/jquery.inputmask.bundle.min.js}"></script>
+
+<script>$(document).ready(function(){
+    $(".currency").inputmask('currency',{rightAlign: false, prefix: '' });
+});
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="incl/header_ :: header (pagename='Items')">header</div>
+
+<section id="items">
+    <div class="container-fluid">
+        <br>
+        <div>
+            <a href="item.html" th:href="@{/item}" class="btn btn-secondary">Add new item</a>
+        </div>
+        <h6></h6>
+        <div class="row">
+            <div class="col">
+                <div class="card" style="max-width: 850px;">
+                    <table class="table table-striped text-left">
+                        <thead class="thead-light">
+                        <tr class="text-left">
+                            <th width="5%">ID</th>
+                            <th width="50%">Item name</th>
+                            <th width="20%" class="text-right" nowrap>Price $</th>
+                            <th width="25%"></th>
+                        </tr>
+                        </thead>
+                        <!-- Next lines - fill items list:-->
+                        <tbody>
+                            <tr th:each="item : ${items}">
+                                <td th:text="${item.itemId}">ItemId</td>
+                                <td th:text="${item.itemName}">ItemName</td>
+                                <td th:text="${#numbers.formatDecimal(item.itemPrice, 1, 'COMMA', 2, 'POINT')}" class="text-right">0.00</td>
+                                </span>
+                                <td class="text-right" nowrap>
+                                 <a th:href="@{|/item/${item.itemId}|}" href="items_edit.html"
+                                    class="btn btn-sm btn-secondary" data-toggle="tooltip"
+                                    data-placement="top">
+                                     <div class="d-none d-sm-block">Edit</div>
+                                     <div class="d-block d-sm-none">✎</div>
+                                 </a>&nbsp;
+                                 <a href="#" data-toggle="modal" class="btn btn-sm btn-danger" data-target="#deleteDialog"
+                                    th:attr="data-id=${item.itemId}, data-name=${item.itemName}">
+                                     <div class="text-white d-none d-sm-block">Delete</div>
+                                     <div class="text-white d-sm-none">&times;</div>
+                                 </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Confirm delete Modal -->
+<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <h5 class="modal-title" id="exampleModalLabel">Delete item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please confirm delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a id="deleteUrl" href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../..js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../..js/popper.min.js"
+        th:src="@{/js/popper.min.js}"></script>
+<script src="../..js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    $('#deleteDialog').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget)
+        $(this).find('.modal-body').text('Confirm item delete: ' + target.data('name'))
+        document.getElementById('deleteUrl').href = '/items/' + target.data('id') + '/delete';
+    })
+</script>
+
+</body>
+</html>

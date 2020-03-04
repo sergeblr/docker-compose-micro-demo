@@ -1,0 +1,5 @@
+
+description = 'Cafe Menu DAO API'
+dependencies {
+  compile project(':model')
+}

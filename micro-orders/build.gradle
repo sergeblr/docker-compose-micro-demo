@@ -1,0 +1,9 @@
+
+description = 'Cafe Menu RabbitMQ micro-orders'
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version:'2.2.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE'
+  compile project(':service')
+    compile group: 'org.springframework.amqp', name: 'spring-rabbit', version:'2.2.4.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.2.2.RELEASE'
+}

@@ -1,0 +1,89 @@
+version: '3.7'
+
+services:
+
+# RabbitMQ server container with user/password:
+ rabbitmq:
+  image: 'rabbitmq:3.7-management-alpine'
+  ports:
+   - "5672:5672"
+   - "15672:15672"
+  environment:
+   RABBITMQ_DEFAULT_USER: micro
+   RABBITMQ_DEFAULT_PASS: M1cr0
+  network_mode: host
+
+# MySQL server container with usr/pwd/db:
+ mysql:
+  image: 'mysql:8.0.19'
+  volumes:
+   - "./docker_mysql:/var/lib.mysql"
+  restart: always
+  ports:
+   - "3306:3306"
+  environment:
+   MYSQL_ROOT_PASSWORD: mysqlxpwd4
+   MYSQL_DATABASE: cmdb
+   MYSQL_USER: muser
+   MYSQL_PASSWORD: mysqlxpwd4
+  network_mode: host
+
+
+# Cafemenu MVN Build JAR's (runs root Dockerfile_CachedDeps)
+ cafemenu:
+  image: cafemenu_mvn
+#  volumes:
+#   - ./docker_m2:/root/.m2
+#   - ./docker_devm:/home/cafemenu
+  build: .
+
+
+# Micro-services (runs each service Dockerfile_CachedDeps):
+ micro-items:
+  container_name: micro-items-c
+  ports:
+   - "8091:8091"
+  depends_on:
+   - cafemenu
+   - mysql
+   - rabbitmq
+  build: micro-items/
+  network_mode: host
+  restart: always
+
+ micro-orders:
+  container_name: micro-orders-c
+  ports:
+   - "8092:8092"
+  depends_on:
+   - cafemenu
+   - mysql
+   - rabbitmq
+  build: micro-orders/
+  network_mode: host
+  restart: always
+
+ micro-iteminorders:
+  container_name: micro-iteminorders-c
+  ports:
+   - "8093:8093"
+  depends_on:
+   - cafemenu
+   - mysql
+   - rabbitmq
+  build: micro-iteminorders/
+  network_mode: host
+  restart: always
+
+# Web-app service:
+ web-app-rabbit:
+  container_name: web-app-rabbit-c
+  build: web-app-rabbit/
+  ports:
+   - "8090:8090"
+  depends_on:
+   - micro-items
+   - micro-orders
+   - micro-iteminorders
+  network_mode: host
+  restart: always

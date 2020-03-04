@@ -1,0 +1,7 @@
+
+description = 'Cafe Menu Service'
+dependencies {
+  compile project(':service-api')
+  compile project(':dao')
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.2.2.RELEASE'
+}

@@ -1,0 +1,5 @@
+
+description = 'Cafe Menu Service API'
+dependencies {
+  compile project(':model')
+}
