@@ -22,12 +22,9 @@ COPY ./pom.xml pom.xml
 RUN mvn -f pom.xml de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
 # add '-N' to mvn -> submodules will be ignored (no need to copy all subPOMs), but modules dependencies will NOT be fetched
 # add '-DexcludeGroupIds=com.epam.summer19' to mvn -> dependencies with that GroupId will be ignored
-# DEPRECATED: '-Dmaven.repo.local=.m2/repository' to mvn -> set maven repository folder
 # !!!!! ALL results TILL HERE will be cached by docker, until any pom.xml will be CHANGED !!!!!
 
 # Build all project with previously fetched dependencies, packaged all sumbodules & services
 COPY . .
 RUN mvn -f pom.xml -B -DskipTests package
-# DEPRECATED: '-Dmaven.repo.local=.m2/repository' to mvn -> set maven repository folder
-
 CMD [""]
