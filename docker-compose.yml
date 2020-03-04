@@ -40,7 +40,7 @@ services:
 
 # Micro-services (runs each service Dockerfile_CachedDeps):
  micro-items:
-  container_name: micro-items-c
+ # container_name: micro-items-c
   ports:
    - "8091:8091"
   depends_on:
@@ -52,7 +52,7 @@ services:
   restart: always
 
  micro-orders:
-  container_name: micro-orders-c
+ # container_name: micro-orders-c
   ports:
    - "8092:8092"
   depends_on:
@@ -64,7 +64,7 @@ services:
   restart: always
 
  micro-iteminorders:
-  container_name: micro-iteminorders-c
+ # container_name: micro-iteminorders-c
   ports:
    - "8093:8093"
   depends_on:
@@ -77,7 +77,7 @@ services:
 
 # Web-app service:
  web-app-rabbit:
-  container_name: web-app-rabbit-c
+ # container_name: web-app-rabbit-c
   build: web-app-rabbit/
   ports:
    - "8090:8090"
