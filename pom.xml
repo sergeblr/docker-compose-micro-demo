@@ -57,7 +57,7 @@
       <checkstyle.version>8.22</checkstyle.version>
       <jacoco.version>0.8.2</jacoco.version>
       <jacoco.bundle.coveredratio.minimum>0%</jacoco.bundle.coveredratio.minimum>
-      <spring.webflux>2.2.4.RELEASE</spring.webflux>
+      <spring.webflux>2.5.12</spring.webflux>
       <rabbitmq>2.2.4.RELEASE</rabbitmq>
       <mysql.version>8.0.18</mysql.version>
 
