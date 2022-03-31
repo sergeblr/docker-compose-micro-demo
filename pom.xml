@@ -39,7 +39,7 @@
 
    <properties>
       <!-- SpringBoot insrtd -->
-      <spring.boot.ver>2.2.2.RELEASE</spring.boot.ver>
+      <spring.boot.ver>2.5.12</spring.boot.ver>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <maven.compiler.source>1.8</maven.compiler.source>
