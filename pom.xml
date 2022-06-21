@@ -59,7 +59,7 @@
       <jacoco.bundle.coveredratio.minimum>0%</jacoco.bundle.coveredratio.minimum>
       <spring.webflux>2.2.4.RELEASE</spring.webflux>
       <rabbitmq>2.2.4.RELEASE</rabbitmq>
-      <mysql.version>8.0.18</mysql.version>
+      <mysql.version>8.0.28</mysql.version>
 
    </properties>
 
